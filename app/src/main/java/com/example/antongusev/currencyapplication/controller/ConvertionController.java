@@ -46,7 +46,7 @@ public class ConvertionController {
 
     private Context context;
 
-    private Map<String, Valute> cache = new HashMap();
+    private final Map<String, Valute> cache = new HashMap();
 
     private ConvertionController(Context context) {
         this.context = context;
@@ -67,7 +67,7 @@ public class ConvertionController {
             return null;
         Valute inputValute = cache.get(charCodeInput);
         Valute outputValute = cache.get(charCodeOutput);
-        return inputValute.getCoast().divide(outputValute.getCoast(), 2, RoundingMode.HALF_UP).multiply(new BigDecimal(value)).toString();
+        return inputValute.getCoast().multiply(new BigDecimal(value)).divide(outputValute.getCoast(), 2, RoundingMode.HALF_UP).toString();
     }
 
     public void initial() {
